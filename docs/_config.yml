@@ -1,1 +1,9 @@
-theme: jekyll-theme-tactile
+highlighter: rouge
+markdown: kramdown
+kramdown:
+    input: GFM #Enable GitHub Flavored Markdown (fenced code blocks)
+    auto_ids: true
+    hard_wrap: false
+        # Current bug in Jekyll 3.0 means no syntax highlighting until 3.1.
+    
+    exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile.rb', 'README.md']
