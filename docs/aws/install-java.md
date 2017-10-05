@@ -4,7 +4,7 @@ title: Installing Java for Imhotep
 permalink: /docs/aws/install-java/
 ---
 
-Imhotep components require a Java virtual machine. Imhotep is known to work with Java version 7. Please download and install a Java 7 JDK from Oracle.
+Imhotep components require a Java virtual machine. Imhotep is known to work with Java version 7. Please download and install a Java 7 JDK from [Oracle](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html).
 
 These instructions assume you have downloaded jdk-7u80-linux-x64.rpm and are installing on a Linux AMI.
 
