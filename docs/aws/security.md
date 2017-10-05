@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Security and Access Seup
+title: Security and Access Setup
 permalink: /docs/aws/security/
 ---
 
