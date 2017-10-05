@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Architecture Overview
+title: Imhotep Architecture Overview
 permalink: /docs/architecture-overview/
 ---
 
