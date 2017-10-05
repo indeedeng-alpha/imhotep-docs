@@ -181,7 +181,7 @@ blockquote {
 }
 
 blockquote p {
-  font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', "Helvetica-Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
   color: #666;
   font-weight: 300;
@@ -259,7 +259,7 @@ max-width: 400px;
         text-shadow: 0 1px #fff;
         font-weight: 700;
         font-size: 13px;
-        font-family: "Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+        font-family: 'Avenir', "Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
         line-height: 1.4;
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F8F8F9ff',endColorstr='#ffe6e6e6',GradientType=0);
         cursor: pointer;
@@ -601,7 +601,7 @@ input[type="button"].btn-block {
 }
 
 .sidebar-link-box a .sidebar-link-text {
-  font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', "Helvetica-Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   font-size: 16px;
   line-height: 1.4;
@@ -1009,7 +1009,7 @@ background-color: white!important;
 }
 
 #headerNavLinks a {
-  font-family: Arial,'Helvetica Neue',Helvetica,sans-serif;
+  font-family: 'Avenir', Arial,'Helvetica Neue',Helvetica,sans-serif;
   font-size: 14px;
   font-weight: bold;
   line-height: 96px;
@@ -1415,7 +1415,7 @@ div.ssba {
 }
 
 .ssba_sharecount {
-  font: 13px Arial, Helvetica, sans-serif;
+  font: 13px 'Avenir', Arial, Helvetica, sans-serif;
   padding: 4px 5px 4px 4px;
   border-radius: 4px;
 }
@@ -1784,7 +1784,7 @@ max-width: 600px;
   #headerNavLinks ul li a {
     display: block;
     background-color: #eee;
-    font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Avenir', "Helvetica-Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: 300;
     color: #00c;
