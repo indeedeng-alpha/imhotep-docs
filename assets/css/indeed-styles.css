@@ -12,6 +12,8 @@ Text Domain: indeedblog
 /*  General
 /*-----------------------------------------------------------------------------------*/
 
+ol ol { list-style-type: lower-alpha; }
+
 h1 {
   margin-bottom: 8px;
   margin-top: 14px;
