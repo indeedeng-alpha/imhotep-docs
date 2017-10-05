@@ -6,26 +6,26 @@ permalink: /docs/architecture-overview/
 
 Learn more about the Imhotep architecture and the components necessary to run Imhotep.
 
-## Architecture Diagram
+## Dependencies
 
-Coming soon
-
-## Java Version
+### Java
 The Imhotep components have been tested with [Java 7 from Oracle](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html). 
 
-## Storage Layer
+### Storage Options
 The storage layer for Imhotep can be HDFS (Apache Hadoop File System) or S3 (Amazon Simple Storage Service). 
 
 If you plan on running Imhotep in AWS, use S3. Otherwise, choose HDFS, as we do for this [docker evaluation version of the stack](https://github.com/indeedeng/imhotep-docker/blob/master/README.md).
 
 Imhotep has been tested with the [CDH5 distribution](https://www.cloudera.com/downloads/cdh/5-10-0.html) of Hadoop. 
 
-## Zookeeper Cluster
+### Zookeeper
 The Zookeeper cluster is used for coordination among the ImhotepDaemon instances and the IQL webapp frontend.
 
 Imhotep has been tested with Zookeeper 3.4.5 from the CDH 5 distribution. [Download here](http://archive.cloudera.com/cdh5/cdh/5/zookeeper-3.4.5-cdh5.10.0.tar.gz).
 
-## ImhotepDaemon (Imhotep Server)
+## Main Imhotep Components
+
+### ImhotepDaemon (Imhotep Server)
 The ImhotepDaemon is the back-end Java service responsible for looking servicing query requests. Add instances of ImhotepDaemon to help maintain high performance with large amounts of data and increased load.
 
  *It depends on*: 
@@ -34,8 +34,6 @@ The ImhotepDaemon is the back-end Java service responsible for looking servicing
 
 * A storage layer (HDFS or S3) to pull down data shards for serving
 
-
-## Imhotep Frontend Components
 
 ### IQL Webapp
 The IQL webapp is a web-based user interface for issuing IQL queries. 
