@@ -82,6 +82,10 @@ pre {
   background-color: #f8f8f8;
 }
 
+code {
+  font-family: 'Courier New', Courier, monospace, serif
+}
+
 .row {
     margin-right: -20px !important;
     margin-left: -20px !important;
