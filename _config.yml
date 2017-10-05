@@ -1,3 +1,5 @@
+name: Imhotep Docs In Progress
+# https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
 highlighter: rouge
 markdown: kramdown
 kramdown:
@@ -7,3 +9,8 @@ kramdown:
         # Current bug in Jekyll 3.0 means no syntax highlighting until 3.1.
     
     exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile.rb', 'README.md']
+
+# jekyll serve --watch --baseurl=
+baseurl: "https://indeedeng-alpha.github.io/imhotep-docs/"
+
+
