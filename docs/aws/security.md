@@ -4,7 +4,7 @@ title: Security and Access Seup
 permalink: /docs/aws/security/
 ---
 
-SH Access Setup
+### SSH Access Setup
 
 Create a key pair (in **EC2 > Key Pairs**). You will use this to provide ssh access to your instances. Download the .pem file for your key pair.
 
