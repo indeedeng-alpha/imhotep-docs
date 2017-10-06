@@ -28,4 +28,4 @@ For scalability, you may want to adapt these instructions to create an auto scal
 1. [Set up ImhotepDaemon](imhotep-daemon/)
 1. [Set up ImhotepFrontend](imhotep-frontend/)
 
-Once you've completed all these steps, you will have a working Imhotep cluster with web frontend engpoints /iql and /iupload.
+Once you've completed all these steps, you will have a working Imhotep cluster with web frontend endpoints /iql and /iupload.
