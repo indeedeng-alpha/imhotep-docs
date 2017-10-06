@@ -77,7 +77,11 @@ permalink: /docs/aws/imhotep-frontend/
     17. If you intend to access the Imhotep webapps through HTTP, edit `/etc/httpd/conf/httpd.conf` to uncomment the `Listen 80` line.
 
     18. Create `/opt/tomcat_shared/` directory containing a new file `core-site.xml`. This Hadoop client configuration is used to write files to S3. Set s3-key and s3-secret to the access key id and secret you created before.
-    ```
+
+```xml
+<hi>
+    
+    
 &lt;?xml version="1.0"?&gt;
 &lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;
 <lt;configuration>gt;
