@@ -77,41 +77,35 @@ permalink: /docs/aws/imhotep-frontend/
     17. If you intend to access the Imhotep webapps through HTTP, edit `/etc/httpd/conf/httpd.conf` to uncomment the `Listen 80` line.
 
     18. Create `/opt/tomcat_shared/` directory containing a new file `core-site.xml`. This Hadoop client configuration is used to write files to S3. Set s3-key and s3-secret to the access key id and secret you created before.
-
-    ```xml
-<hi>
-    
-    
-&lt;?xml version="1.0"?&gt;
-&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;
-<lt;configuration>gt;
-          <lt;property>gt;
-              <lt;name>gt;hadoop.tmp.dir<lt;/name>gt;
-              <lt;value>gt;/var/data/hdfs-tmp<lt;/value>gt;
-          <lt;/property>gt;
-          <lt;property>gt;
-              <lt;name>gt;fs.s3n.awsAccessKeyId<lt;/name>gt;
-              <lt;value>gt;S3_KEY_HERE<lt;/value>gt;
-          <lt;/property>gt;
-          <lt;property>gt;
-              <lt;name>gt;fs.s3n.awsSecretAccessKey<lt;/name>gt;
-              <lt;value>gt;S3_SECRET_HERE<lt;/value>gt;
-          <lt;/property>gt;
-          <lt;property>gt;
-              <lt;!-- config valid for clientserver -->gt;
-              <lt;name>gt;fs.defaultFS<lt;/name>gt;
-              <lt;value>gt;file:///opt/iupload/<lt;/value>gt;
-              <lt;final>gt;true<lt;/final>gt;
-          <lt;/property>gt;
-          <lt;property>gt;
-              <lt;!-- config valid for clientserver -->gt;
-              <lt;name>gt;io.compression.codec.lzo.class<lt;/name>gt;
-              <lt;value>gt;com.hadoop.compression.lzo.LzoCodec<lt;/value>gt;
-          <lt;/property>gt;
-          <lt;property>gt;
-              <lt;!-- config valid for clientserver -->gt;
-              <lt;name>gt;io.compression.codecs<lt;/name>gt;
-              <lt;value>gt;
+    ```
+    <configuration>
+          <property>
+              <name>hadoop.tmp.dir</name>
+              <value>/var/data/hdfs-tmp</value>
+          </property>
+          <property>
+              <name>fs.s3n.awsAccessKeyId</name>
+              <value>S3_KEY_HERE</value>
+          </property>
+          <property>
+              <name>fs.s3n.awsSecretAccessKey</name>
+              <value>S3_SECRET_HERE</value>
+          </property>
+          <property>
+              <!-- config valid for clientserver -->
+              <name>fs.defaultFS</name>
+              <value>file:///opt/iupload/</value>
+              <final>true</final>
+          </property>
+          <property>
+              <!-- config valid for clientserver -->
+              <name>io.compression.codec.lzo.class</name>
+              <value>com.hadoop.compression.lzo.LzoCodec</value>
+          </property>
+          <property>
+              <!-- config valid for clientserver -->
+              <name>io.compression.codecs</name>
+              <value>
                  org.apache.hadoop.io.compress.DefaultCodec,
                  org.apache.hadoop.io.compress.GzipCodec,
                  org.apache.hadoop.io.compress.BZip2Codec,
@@ -120,9 +114,9 @@ permalink: /docs/aws/imhotep-frontend/
                  org.apache.hadoop.io.compress.SnappyCodec,
                  com.hadoop.compression.lzo.LzoCodec,
                  com.hadoop.compression.lzo.LzopCodec
-              <lt;/value>gt;
-          <lt;/property>gt;
-<lt;/configuration>gt;
+              </value>
+          </property>
+</configuration>
     ```
 
     19. Install the TSV converter:
