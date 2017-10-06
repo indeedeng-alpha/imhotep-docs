@@ -25,3 +25,5 @@ Create a security group (in **EC2 > Security Groups**) named "Imhotep Frontend A
 5. Add either an HTTP or HTTPS rule (or both, depending on how you want to access Imhotep frontend servers). Configure these rules however you like to limit the source IPs that can access your frontends (e.g. limited to your personal or corporate network IPs).
 
 6. Click Create.
+
+**Next Step**: [Set up Zookeeper](../zookeeper/)

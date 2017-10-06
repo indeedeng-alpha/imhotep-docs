@@ -188,3 +188,5 @@ permalink: /docs/aws/imhotep-daemon/
         ```
         service supervisor start
         ```
+
+**Next Step**: [Set up ImhotepFrontend](../imhotep-frontend/)

@@ -94,3 +94,5 @@ permalink: /docs/aws/zookeeper/
         cd /var/data/zookeeper
         /opt/zookeeper/bin/zkServer.sh start
         ```
+
+**Next Step**: [Set up ImhotepDaemon](../imhotep-daemon/)
