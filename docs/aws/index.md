@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Installing Imhotep on AWS
-permalink: /docs/aws/install-java/
+permalink: /docs/aws/
 ---
 
 ## Introduction
