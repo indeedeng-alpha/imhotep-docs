@@ -1,6 +1,6 @@
 ---
 layout: default
-title: How to Convert TSVs on the Command Line
+title: How to Convert TSVs into Flamdex Shards for Imhotep on the Command Line
 permalink: /docs/tsv/
 ---
 
