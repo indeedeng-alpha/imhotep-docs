@@ -78,7 +78,7 @@ permalink: /docs/aws/imhotep-daemon/
     useradd -r imhotep
     ```
 
-    16. Install Java 7: [instructions](install-java/)
+    16. Install Java 7: [instructions](../install-java/)
 
     17. Install and configure supervisor
     ```

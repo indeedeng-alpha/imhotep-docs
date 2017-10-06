@@ -69,7 +69,7 @@ permalink: /docs/aws/imhotep-frontend/
         xvdb    202:16   0  40G  0 disk /var/data
         ```
 
-    15. Install Java 7: [instructions](install-java/)
+    15. Install Java 7: [instructions](../install-java/)
 
     16. Install configuration files:
 

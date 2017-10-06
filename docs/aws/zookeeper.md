@@ -61,7 +61,7 @@ permalink: /docs/aws/zookeeper/
 	xvdb    202:16   0  30G  0 disk /var/data
 	```
 
-    15. Install Java 7: [instructions](install-java/)
+    15. Install Java 7: [instructions](../install-java/)
 
     16. Download and unpack zookeeper:
 	```
