@@ -108,7 +108,6 @@ permalink: /docs/aws/imhotep-frontend/
               <lt;!-- config valid for clientserver -->gt;
               <lt;name>gt;io.compression.codecs<lt;/name>gt;
               <lt;value>gt;
->>>>>>> Stashed changes
                  org.apache.hadoop.io.compress.DefaultCodec,
                  org.apache.hadoop.io.compress.GzipCodec,
                  org.apache.hadoop.io.compress.BZip2Codec,
