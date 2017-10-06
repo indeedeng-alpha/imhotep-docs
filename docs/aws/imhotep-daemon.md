@@ -167,7 +167,7 @@ permalink: /docs/aws/imhotep-daemon/
     ```
 	#!/bin/bash
 	export CLASSPATH="/opt/imhotep:/opt/imhotep/imhotep-server/lib/*:"$CLASSPATH
-	MAX_HEAP_GB=YOUR_MAX_HEAP_HERE (5G for r3.large)
+	MAX_HEAP_GB=YOUR_MAX_HEAP_HERE (5 for r3.large)
 	ZOOKEEPER_HOST=ZOOKEEPER_IP_HERE
 	java -Xmx5G -Dlog4j.configuration=file:///opt/imhotep/log4j.xml -Djava.io.tmpdir=/var/data/imhotep/tmp -Dcom.indeed.flamdex.simple.useNative=true -Dcom.indeed.flamdex.simple.useSSSE3=true com.indeed.imhotep.service.ImhotepDaemon /var/data/indexes /var/tempFS --port 12345 --memory $((MAX_HEAP_GB * 1024 - 512)) --zknodes $ZOOKEEPER_HOST:2181 --zkpath /imhotep/daemons --lazyLoadProps /opt/imhotep/imhotep-caching.yaml
     ```
