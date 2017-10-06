@@ -30,64 +30,67 @@ permalink: /docs/aws/zookeeper/
 3. In the ssh console:
 
     10. Become root:
-	```
-	sudo su -
-	```
+    
+        ```
+        sudo su -
+        ```
 
     11. Update the system:
-	```
-	yum update -y
-	```
-
-    12. Install glibc:
-	```
-	yum -y install glibc.i686
-	```
+    
+        ```
+        yum update -y
+        ```
 
     13. Format and mount /var/data on the SSD you attached for local Imhotep storage by running the following commands:
-	```
-	umount /media/ephemeral0
-	mkfs.ext4 -N 1000000 -m 1 -O dir_index,extent,sparse_super /dev/xvdb
-	mkdir /var/data
-	mount -t ext4 /dev/xvdb /var/data
-	```
+    
+        ```
+        umount /media/ephemeral0
+        mkfs.ext4 -N 1000000 -m 1 -O dir_index,extent,sparse_super /dev/xvdb
+        mkdir /var/data
+        mount -t ext4 /dev/xvdb /var/data
+        ```
 
     14. Confirm that /var/data is properly configured by running lsblk. You should see output like this:
-	```
-	[root@ip-***-**-**-** ~]# lsblk
-	NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
-	xvda    202:0    0   8G  0 disk
-	└─xvda1 202:1    0   8G  0 part /
-	xvdb    202:16   0  30G  0 disk /var/data
-	```
+    
+        ```
+        [root@ip-***-**-**-** ~]# lsblk
+        NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+        xvda    202:0    0   8G  0 disk
+        └─xvda1 202:1    0   8G  0 part /
+        xvdb    202:16   0  30G  0 disk /var/data
+        ```
 
     15. Install Java 7: [instructions](../install-java/)
 
     16. Download and unpack zookeeper:
-	```
-	wget -O /tmp/zookeeper.tar.gz http://archive.cloudera.com/cdh5/cdh/5/zookeeper-3.4.5-cdh5.10.0.tar.gz
-	cd /opt 
-	tar xzf /tmp/zookeeper.tar.gz 
-	ln -s zookeeper-3.4.5-cdh5.10.0 zookeeper
-	```
+    
+        ```
+        wget -O /tmp/zookeeper.tar.gz http://archive.cloudera.com/cdh5/cdh/5/zookeeper-3.4.5-cdh5.10.0.tar.gz
+        cd /opt 
+        tar xzf /tmp/zookeeper.tar.gz 
+        ln -s zookeeper-3.4.5-cdh5.10.0 zookeeper
+        ```
 
     17. Create directories:
-	```
-	mkdir /var/zookeeper_snapshots
-	mkdir /var/data/zookeeper
-	```
+    
+        ```
+        mkdir /var/zookeeper_snapshots
+        mkdir /var/data/zookeeper
+        ```
 
     18. Create /opt/zookeeper/conf/zoo.cfg:
-	```
-	tickTime=2000
-	initLimit=10
-	syncLimit=5
-	dataDir=/var/zookeeper_snapshots
-	clientPort=2181
-	```
+    
+        ```
+        tickTime=2000
+        initLimit=10
+        syncLimit=5
+        dataDir=/var/zookeeper_snapshots
+        clientPort=2181
+        ```
 
     19. Start zookeeper:
-	```
-	cd /var/data/zookeeper
-	/opt/zookeeper/bin/zkServer.sh start
-	```
+    
+        ```
+        cd /var/data/zookeeper
+        /opt/zookeeper/bin/zkServer.sh start
+        ```

@@ -41,7 +41,7 @@ permalink: /docs/aws/imhotep-frontend/
     11. Install required packages:
 
         ```
-        yum install -y glibc.i686 tomcat7 httpd mod_ssl
+        yum install -y tomcat7 httpd mod_ssl
         ```
 
     12. Create a user for the shard builder:
