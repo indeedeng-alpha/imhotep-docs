@@ -278,4 +278,4 @@ permalink: /docs/aws/imhotep-frontend/
         service tomcat7 start
         ```
 
-**[Back to Instruction Index](../)**
+[Back to Instruction Index](../)

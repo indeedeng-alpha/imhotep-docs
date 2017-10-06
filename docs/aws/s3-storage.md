@@ -15,4 +15,4 @@ Create the following new S3 buckets. These buckets should be created in the same
 
 Create a user (in **IAM > Users**) with programmatic access and full access to your new S3 buckets. Save the access key ID and secret for later use.
 
-**Next Step***: [Set up SSH access and security groups](../security/)
+**Next Step**: [Set up SSH access and security groups](../security/)
