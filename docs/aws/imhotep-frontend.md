@@ -71,13 +71,13 @@ permalink: /docs/aws/imhotep-frontend/
     curl https://raw.githubusercontent.com/indeedeng/imhotep-cloudformation/master/iql/catalina.properties > /etc/tomcat7/catalina.properties
     curl https://raw.githubusercontent.com/indeedeng/imhotep-cloudformation/master/iupload/server.xml > /etc/tomcat7/server.xml
     curl https://raw.githubusercontent.com/indeedeng/imhotep-cloudformation/master/apache/httpd.conf > /etc/httpd/conf/httpd.conf
-     curl https://raw.githubusercontent.com/indeedeng/imhotep-cloudformation/master/apache/ssl.conf > /etc/httpd/conf.d/ssl.conf
+    curl https://raw.githubusercontent.com/indeedeng/imhotep-cloudformation/master/apache/ssl.conf > /etc/httpd/conf.d/ssl.conf
     ```
 
     17. If you intend to access the Imhotep webapps through HTTP, edit `/etc/httpd/conf/httpd.conf` to uncomment the `Listen 80` line.
 
     18. Create `/opt/tomcat_shared/` directory containing a new file `core-site.xml`. This Hadoop client configuration is used to write files to S3. Set s3-key and s3-secret to the access key id and secret you created before.
-    ```
+    ```xml
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
@@ -122,7 +122,7 @@ permalink: /docs/aws/imhotep-frontend/
     ```
 
     19. Install the TSV converter:
-    ```
+    ```bash
     mkdir /opt/imhotepTsvConverter
     cd /opt/imhotepTsvConverter
     wget -O imhotepTsvConverter.tar.gz https://indeedeng-imhotep-build.s3.amazonaws.com/tsv-builder-1.0.1-SNAPSHOT-complete.tar.gz
@@ -138,7 +138,7 @@ permalink: /docs/aws/imhotep-frontend/
     ```
 
     20. Create `/opt/imhotepTsvConverter/tsvConverter.sh` (owner `shardbuilder`, group `shardbuilder`, mode `0755`), the script that runs the TSV converter. Set `S3_BUILD_BUCKET` and `S3_DATA_BUCKET` to the appropriate names for the buckets you created earlier.
-    ```
+    ```bash
 #!/bin/bash
 
 lockfile -r 0 /tmp/tsvConverter.lock || exit 1
