@@ -14,7 +14,7 @@ These instructions require an AWS account and explain how to set up your S3 stor
 1. ImhotepDaemon
 1. Imhotep Frontend
 
-These instructions are based on the configuration that can be easily deployed using the AWS CloudFromation scripts describe in the [Quick Start](http://opensource.indeedeng.io/imhotep/docs/quick-start/) guide.
+These instructions are based on the configuration that can be easily deployed using the AWS CloudFormation scripts described in the [Quick Start](http://opensource.indeedeng.io/imhotep/docs/quick-start/) guide.
 
 For fault tolerance, you should run replicated Zookeeper instances in a quorum. See the [Zookeeper instructions](http://archive.cloudera.com/cdh5/cdh/5/zookeeper/zookeeperStarted.html) for more information.
 
