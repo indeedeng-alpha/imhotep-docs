@@ -1,6 +1,6 @@
 ---
 layout: default
-title: How-to: Command-line TSV Import
+title: How to Convert TSVs on the Command Line
 permalink: /docs/tsv/
 ---
 
