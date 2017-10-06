@@ -145,22 +145,24 @@ permalink: /docs/aws/imhotep-daemon/
     ```
 
     25. Create /opt/imhotep/imhotep-caching.yaml (user imhotep, group imhotep) using the template below. Set s3-bucket to the name of the data bucket you created earlier. Set s3-key and s3-secret to the access key id and secret you created before.
-    ```
-    -   type: S3
-        order: 2
-        mountpoint: /
-        s3-bucket: DATA_BUCKET_NAME_HERE
-        s3-key: S3_KEY_HERE
-        s3-secret: S3_SECRET_HERE
-    -   type: SQAR_AUTOMOUNTING
-        order: 4
-        mountpoint: /
-    -   type: CACHED
-        order: 6
-        mountpoint: /
-        cache-dir: /var/data/file_cache
-        cacheSizeMB: 32000
-    ```
+
+        ```
+        ---
+        -   type: S3
+            order: 2
+            mountpoint: /
+            s3-bucket: DATA_BUCKET_NAME_HERE
+            s3-key: S3_KEY_HERE
+            s3-secret: S3_SECRET_HERE
+        -   type: SQAR_AUTOMOUNTING
+            order: 4
+            mountpoint: /
+        -   type: CACHED
+            order: 6
+            mountpoint: /
+            cache-dir: /var/data/file_cache
+            cacheSizeMB: 32000
+        ```
 
     26. Create /opt/imhotep/imhotep.sh (owner imhotep, group imhotep, mode 0755) using the template below. Set MAX_HEAP to the size in GB of memory allocated to the ImhotepDaemon. A good guideline for MAX_HEAP is to leave between 10GB and 20% of instance memory free. (Examples: r3.large 5, r3.xlarge 20, r3.2xlarge 50.) Set ZOOKEEPER_HOST to the address (Private IP or Private DNS) of the Zookeeper instance you configured earlier.
     ```
