@@ -64,7 +64,7 @@ For the nasa example above, you should see the following lines in your output:
     INFO  [EasyIndexBuilder] done
     INFO  [TsvConverter] Progress: 100%
 
-You can also review the log of the run in the `logs/shardBuilder.log`` file.
+You can also review the log of the run in the `logs/shardBuilder.log` file.
 
 ## Check the results
 
