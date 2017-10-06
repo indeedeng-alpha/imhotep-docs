@@ -116,7 +116,7 @@ permalink: /docs/aws/imhotep-daemon/
         curl https://raw.githubusercontent.com/indeedeng/imhotep-cloudformation/master/imhotep/log4j.xml > /opt/imhotep/log4j.xml
         ```
 
-21. Configure kernel settings
+    21. Configure kernel settings
 
         ```
         echo 80 > /proc/sys/vm/dirty_ratio
