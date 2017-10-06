@@ -146,30 +146,29 @@ permalink: /docs/aws/imhotep-daemon/
 
     25. Create /opt/imhotep/imhotep-caching.yaml (user imhotep, group imhotep) using the template below. Set s3-bucket to the name of the data bucket you created earlier. Set s3-key and s3-secret to the access key id and secret you created before.
     ```
-	---
-	-   type: S3
-	    order: 2
-	    mountpoint: /
-	    s3-bucket: DATA_BUCKET_NAME_HERE
-	    s3-key: S3_KEY_HERE
-	    s3-secret: S3_SECRET_HERE
-	-   type: SQAR_AUTOMOUNTING
-	    order: 4
-	    mountpoint: /
-	-   type: CACHED
-	    order: 6
-	    mountpoint: /
-	    cache-dir: /var/data/file_cache
-	    cacheSizeMB: 32000
+    -   type: S3
+        order: 2
+        mountpoint: /
+        s3-bucket: DATA_BUCKET_NAME_HERE
+        s3-key: S3_KEY_HERE
+        s3-secret: S3_SECRET_HERE
+    -   type: SQAR_AUTOMOUNTING
+        order: 4
+        mountpoint: /
+    -   type: CACHED
+        order: 6
+        mountpoint: /
+        cache-dir: /var/data/file_cache
+        cacheSizeMB: 32000
     ```
 
     26. Create /opt/imhotep/imhotep.sh (owner imhotep, group imhotep, mode 0755) using the template below. Set MAX_HEAP to the size in GB of memory allocated to the ImhotepDaemon. A good guideline for MAX_HEAP is to leave between 10GB and 20% of instance memory free. (Examples: r3.large 5, r3.xlarge 20, r3.2xlarge 50.) Set ZOOKEEPER_HOST to the address (Private IP or Private DNS) of the Zookeeper instance you configured earlier.
     ```
-	#!/bin/bash
-	export CLASSPATH="/opt/imhotep:/opt/imhotep/imhotep-server/lib/*:"$CLASSPATH
-	MAX_HEAP_GB=YOUR_MAX_HEAP_HERE (5 for r3.large)
-	ZOOKEEPER_HOST=ZOOKEEPER_IP_HERE
-	java -Xmx5G -Dlog4j.configuration=file:///opt/imhotep/log4j.xml -Djava.io.tmpdir=/var/data/imhotep/tmp -Dcom.indeed.flamdex.simple.useNative=true -Dcom.indeed.flamdex.simple.useSSSE3=true com.indeed.imhotep.service.ImhotepDaemon /var/data/indexes /var/tempFS --port 12345 --memory $((MAX_HEAP_GB * 1024 - 512)) --zknodes $ZOOKEEPER_HOST:2181 --zkpath /imhotep/daemons --lazyLoadProps /opt/imhotep/imhotep-caching.yaml
+    #!/bin/bash
+    export CLASSPATH="/opt/imhotep:/opt/imhotep/imhotep-server/lib/*:"$CLASSPATH
+    MAX_HEAP_GB=YOUR_MAX_HEAP_HERE (5 for r3.large)
+    ZOOKEEPER_HOST=ZOOKEEPER_IP_HERE
+    java -Xmx"$MAX_HEAP_GB"G -Dlog4j.configuration=file:///opt/imhotep/log4j.xml -Djava.io.tmpdir=/var/data/imhotep/tmp -Dcom.indeed.flamdex.simple.useNative=true -Dcom.indeed.flamdex.simple.useSSSE3=true com.indeed.imhotep.service.ImhotepDaemon /var/data/indexes /var/tempFS --port 12345 --memory $((MAX_HEAP_GB * 1024 - 512)) --zknodes $ZOOKEEPER_HOST:2181 --zkpath /imhotep/daemons --lazyLoadProps /opt/imhotep/imhotep-caching.yaml
     ```
 
     27. Start supervisor
