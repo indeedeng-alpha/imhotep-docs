@@ -10,6 +10,10 @@ A typical Imhotep cluster will process incoming TSV uploads with a cron job that
 runs the TsvConverter Java class. This utility scans a given directory location 
 (which can be local, S3, or HDFS) for new TSV uploads and attempts to convert them.
 
+The output of the converter are Flamdex shards. Flamdex is the optimized inverted index
+format included with Imhotep. Jeff Plaisance spoke about Flamdex and its vectorized varint
+decoding scheme in his [IndeedEng talk](http://engineering.indeedblog.com/talks/imhotep-large-scale-analytics-machine-learning-indeed/) on Imhotep.
+
 If you wish to do manual conversion of a TSV, you can use the same utility and a temporary
 directory structure. Here's how.
 
@@ -79,3 +83,5 @@ for the import. Here's what it looks like for the NASA example:
     fld-bytes.intterms    fld-method.strindex   fld-unixtime.intdocs     fld-useragent.strterms
     fld-host.strdocs      fld-method.strterms   fld-unixtime.intindex64  metadata.txt
     fld-host.strindex     fld-referer.strdocs   fld-unixtime.intterms
+
+You can upload this shard directory to the appropriate directory in your Imhotep cluster (S3 bucket or HDFS directory) and the Imhotep daemons will pick it up.
