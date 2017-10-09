@@ -84,4 +84,79 @@ for the import. Here's what it looks like for the NASA example:
     fld-host.strdocs      fld-method.strterms   fld-unixtime.intindex64  metadata.txt
     fld-host.strindex     fld-referer.strdocs   fld-unixtime.intterms
 
-You can upload this shard directory to the appropriate directory in your Imhotep cluster (S3 bucket or HDFS directory) and the Imhotep daemons will pick it up.
+## Package and deploy
+
+Current there is no command-line utility to package the contents built by TsvConverter into the compressed sqar file format. You have two options:
+
+### Option 1: Build directly into HDFS or S3
+
+If the `--data-loc` parameter in the converter command line above starts with `hdfs:` or `s3n:` (deploying to HDFS or S3, respectively),
+the `TsvConverter` will compress into a sqar file and upload directly. *This is the recommended option.*
+
+In order to do this, you'll need a `core-site.xml` file that is configured for either HDFS or S3. In a typical Imhotep frontend server
+(as configured by the CloudFormation scripts, for example), you can find this file in `/opt/imhotepTsvConverter/conf/`. Place this
+file in the conf/ subdirectory you created in previous steps.
+
+For example:
+
+    ```
+    java -Dlog4j.configuration=conf/log4j.xml com.indeed.imhotep.builder.tsv.TsvConverter --index-loc $d/tsv/incoming --success-loc $d/tsv/success --failure-loc $d/tsv/failed --data-loc s3n://YOUR_DATA_BUCKET_NAME/ --build-loc $d/build
+    ```
+
+### Option 2: Compress into sqar file manually
+
+Note: this option requires you have the JDK installed.
+
+1. Create a file called ``SqarCommandLine.java`:
+
+    ```java
+import java.io.File;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.RawLocalFileSystem;
+import com.indeed.imhotep.archive.SquallArchiveWriter;
+import com.indeed.imhotep.archive.compression.SquallArchiveCompressor;
+
+public class SquarCommandLine {
+    public static void main(String[] args) throws Exception {
+        Configuration hdfsConf = new Configuration();
+        final FileSystem fs = new RawLocalFileSystem();
+        fs.setConf(hdfsConf);
+        final File shardDir = new File(args[0]);
+        final Path outPath = new Path(args[1] + "/" + shardDir.getParentFile().getName() + "/" + shardDir.getName() + ".sqar");
+        final SquallArchiveWriter writer =
+              new SquallArchiveWriter(fs, outPath, true,
+                                      SquallArchiveCompressor.GZIP);
+        writer.batchAppendDirectory(shardDir);
+        writer.commit();
+        System.out.println("Wrote " + outPath);
+    }
+}
+    ```
+    
+1. Compile this file:
+
+    ```
+    javac -cp ./shardBuilder/lib/*:./conf:$CLASSPATH -d . SqarCommandLine.java
+    ```
+    
+1. Run the newly compiled program, passing the path to shard directory and a top-level directory where you want the 
+compressed version written. For the NASA example above:
+
+    ```
+    java -Dlog4j.configuration=conf/log4j.xml  -cp .:./shardBuilder/lib/*:./conf:$CLASSPATH SqarCommandLine $d/index/nasa/index19950801.00-19950802.00.20171006095305 staging/
+    ```
+    
+1. The results will be written in the directory you specify, e.g. in this example:
+
+    ```
+$ find staging/
+staging/
+staging/apachejira
+staging/apachejira/index19950801.00-19950802.00.20171006095305.sqar
+staging/apachejira/index19950801.00-19950802.00.20171006095305.sqar/archive0.bin
+staging/apachejira/index19950801.00-19950802.00.20171006095305.sqar/metadata.txt
+    ```
+
+1. You can then upload the .sqar shard directory to the appropriate directory in your Imhotep cluster (S3 bucket or HDFS directory) and the Imhotep daemons will pick it up.
