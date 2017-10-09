@@ -52,6 +52,7 @@ day of TSV data for this dataset is placed into the directory structure for proc
     
 For the nasa example above, you should see the following lines in your output:
 
+
     INFO  [EasyIndexBuilderFromTSV] Reading TSV data from file:/.../imhotepTsvConverter/tmp.Njxp9K81x0/tsv/incoming/nasa/nasa_19950801.tsv
     INFO  [EasyIndexBuilderFromTSV] Scanning the file to detect int fields
     INFO  [EasyIndexBuilderFromTSV] Int fields detected: bytes,response,time
@@ -99,40 +100,38 @@ file in the conf/ subdirectory you created in previous steps.
 
 For example:
 
-    ```
     java -Dlog4j.configuration=conf/log4j.xml com.indeed.imhotep.builder.tsv.TsvConverter --index-loc $d/tsv/incoming --success-loc $d/tsv/success --failure-loc $d/tsv/failed --data-loc s3n://YOUR_DATA_BUCKET_NAME/ --build-loc $d/build
-    ```
 
 ### Option 2: Compress into sqar file manually
 
 Note: this option requires you have the JDK installed.
 
-1. Create a file called ``SqarCommandLine.java`:
+1. Create a file called `SqarCommandLine.java`:
 
     ```java
-import java.io.File;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.fs.RawLocalFileSystem;
-import com.indeed.imhotep.archive.SquallArchiveWriter;
-import com.indeed.imhotep.archive.compression.SquallArchiveCompressor;
+    import java.io.File;
+    import org.apache.hadoop.conf.Configuration;
+    import org.apache.hadoop.fs.FileSystem;
+    import org.apache.hadoop.fs.Path;
+    import org.apache.hadoop.fs.RawLocalFileSystem;
+    import com.indeed.imhotep.archive.SquallArchiveWriter;
+    import com.indeed.imhotep.archive.compression.SquallArchiveCompressor;
 
-public class SquarCommandLine {
-    public static void main(String[] args) throws Exception {
-        Configuration hdfsConf = new Configuration();
-        final FileSystem fs = new RawLocalFileSystem();
-        fs.setConf(hdfsConf);
-        final File shardDir = new File(args[0]);
-        final Path outPath = new Path(args[1] + "/" + shardDir.getParentFile().getName() + "/" + shardDir.getName() + ".sqar");
-        final SquallArchiveWriter writer =
-              new SquallArchiveWriter(fs, outPath, true,
-                                      SquallArchiveCompressor.GZIP);
-        writer.batchAppendDirectory(shardDir);
-        writer.commit();
-        System.out.println("Wrote " + outPath);
+    public class SquarCommandLine {
+        public static void main(String[] args) throws Exception {
+            Configuration hdfsConf = new Configuration();
+            final FileSystem fs = new RawLocalFileSystem();
+            fs.setConf(hdfsConf);
+            final File shardDir = new File(args[0]);
+            final Path outPath = new Path(args[1] + "/" + shardDir.getParentFile().getName() + "/" + shardDir.getName() + ".sqar");
+            final SquallArchiveWriter writer =
+                  new SquallArchiveWriter(fs, outPath, true,
+                                          SquallArchiveCompressor.GZIP);
+            writer.batchAppendDirectory(shardDir);
+            writer.commit();
+            System.out.println("Wrote " + outPath);
+        }
     }
-}
     ```
     
 1. Compile this file:
@@ -151,12 +150,12 @@ compressed version written. For the NASA example above:
 1. The results will be written in the directory you specify, e.g. in this example:
 
     ```
-$ find staging/
-staging/
-staging/apachejira
-staging/apachejira/index19950801.00-19950802.00.20171006095305.sqar
-staging/apachejira/index19950801.00-19950802.00.20171006095305.sqar/archive0.bin
-staging/apachejira/index19950801.00-19950802.00.20171006095305.sqar/metadata.txt
+    $ find staging/
+    staging/
+    staging/apachejira
+    staging/apachejira/index19950801.00-19950802.00.20171006095305.sqar
+    staging/apachejira/index19950801.00-19950802.00.20171006095305.sqar/archive0.bin
+    staging/apachejira/index19950801.00-19950802.00.20171006095305.sqar/metadata.txt
     ```
 
 1. You can then upload the .sqar shard directory to the appropriate directory in your Imhotep cluster (S3 bucket or HDFS directory) and the Imhotep daemons will pick it up.
