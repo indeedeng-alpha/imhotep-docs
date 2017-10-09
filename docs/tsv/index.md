@@ -104,8 +104,6 @@ For example:
 
 ### Option 2: Compress into sqar file manually
 
-Note: this option requires you have the JDK installed.
-
 1. Create a file called `SqarCommandLine.java`:
 
     ```java
